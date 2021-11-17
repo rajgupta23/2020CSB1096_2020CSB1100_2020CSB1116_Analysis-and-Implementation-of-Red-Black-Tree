@@ -207,7 +207,7 @@ void printPath(Tree* t, int key) { // to be completed
 	node* temp = t->root;
 	while (temp->data != key && temp != t->NIL) {
 		printf("%d ", temp->data);
-		if (temp->data > key)temp = temp->right;
+		if (temp->data > key)temp = temp->left;
 		else temp = temp->right;
 	}
 	printf("%d\n", key);
