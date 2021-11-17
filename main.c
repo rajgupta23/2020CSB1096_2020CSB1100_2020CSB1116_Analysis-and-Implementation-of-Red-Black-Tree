@@ -18,7 +18,7 @@ int main() {
 	inorder(t,t->root);
 	printf("\n");
 	printf("max = %d \n",maximum(t));
-	printf("max = %d \n",minimum(t));
+	printf("min = %d \n",minimum(t));
 	search(t,5)?printf("found\n"):printf("Not found\n");
 	printPath(t,6);
 	return 0;
