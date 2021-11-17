@@ -10,7 +10,7 @@ typedef struct node { // treeNode structure
 	bool color; // using bool we can save 31 bits of int.
 	struct node *right; // pointer to right child
 	struct node *left; // pointer to left child
-	struct node *parent; // pointer to parent 
+	struct node *parent; // pointer to parent child
 } node;
 
 typedef struct Tree {
@@ -159,4 +159,58 @@ void inorder(Tree *t, node *root) {
 		printf("%d\n", root->data);
 		inorder(t, root->right);
 	}
+}
+
+void postorder(Tree * t , node * root) {
+	if (root != t->NIL) { // tree has atleast one node
+		postorder(t, root->left);
+		postorder(t, root->right);
+		printf("%d\n", root->data);
+	}
+}
+
+void preorder(Tree * t , node * root) {
+	if (root != t->NIL) { // tree has atleast one node
+		printf("%d\n", root->data);
+		preorder(t, root->left);
+		preorder(t, root->right);
+	}
+}
+
+int search(Tree* t , int key) { // to search key in the tree
+	node* temp = t->root;
+	while (temp->data != key && temp != t->NIL) {
+		if (temp->data < key)temp = temp->left;
+		else temp = temp->right;
+	}
+	(temp == t->NIL) ? 0 : 1;
+}
+
+int minimum(Tree* t) {  // to find minimum value in tree
+	node * temp = t->root;
+	if (temp == t->NIL)return __INT_MAX__; // tree is empty
+	while (temp->left != t->NIL)temp = temp->left;
+	return temp->data;
+}
+
+int maximum(Tree* t) { // to find maximum value in tree
+	node * temp = t->root;
+	if (temp == t->NIL)return -1e9; // tree is empty
+	while (temp->right != t->NIL)temp = temp->right;
+	return temp->data;
+}
+
+// void printPath(Tree* t){ // to be completed
+
+// }
+
+int blackHieght(Tree *t, node *root) {  // still has bug
+	node* temp = root;
+	int res = 0;
+	while (temp != t->NIL) {
+		temp = temp->left;
+		if (temp->color == 0)
+			res++;
+	}
+	return res;
 }
