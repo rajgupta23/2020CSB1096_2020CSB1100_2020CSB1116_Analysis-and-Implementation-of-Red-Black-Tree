@@ -200,9 +200,18 @@ int maximum(Tree* t) { // to find maximum value in tree
 	return temp->data;
 }
 
-// void printPath(Tree* t){ // to be completed
+void printPath(Tree* t, int key) { // to be completed
 
-// }
+	if (search(t, key) == 0)printf("Element is not present\n");
+
+	node* temp = t->root;
+	while (temp->data != key && temp != t->NIL) {
+		printf("%d ", temp->data);
+		if (temp->data > key)temp = temp->right;
+		else temp = temp->right;
+	}
+	printf("%d\n", key);
+}
 
 int blackHieght(Tree *t) {
 	node* temp = t->root;
