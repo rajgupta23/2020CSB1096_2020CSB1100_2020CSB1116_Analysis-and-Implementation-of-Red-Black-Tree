@@ -10,7 +10,7 @@ typedef struct node { // treeNode structure
 	bool color; // using bool we can save 31 bits of int.
 	struct node *right; // pointer to right child
 	struct node *left; // pointer to left child
-	struct node *parent; // pointer to parent child
+	struct node *parent; // pointer to parent 
 } node;
 
 typedef struct Tree {
