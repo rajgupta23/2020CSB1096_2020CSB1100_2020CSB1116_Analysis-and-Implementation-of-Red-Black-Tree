@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+	int key;
+	int color;
+	struct node *parent;
+	struct node *left;
+	struct node *right;
+};
+
+struct node *root;
+struct node *nill;
+
+void tree_print_inorder_helper(struct node *x){
+	if(x != nill){
+		tree_print_inorder_helper(x->left);
+		printf("%d\t", x->key);
+		tree_print_inorder_helper(x->right);
+	}
+}
+void tree_print_inorder()
+{
+    tree_print_inorder_helper(root);
+    printf("\n");
+}
+
+void tree_print_preorder_helper(struct node *x){
+	if(x != nill){
+	    printf("%d\t", x->key);
+		tree_print_preorder_helper(x->left);
+		tree_print_preorder_helper(x->right);
+	}
+}
+void tree_print_preorder()
+{
+    tree_print_preorder_helper(root);
+    printf("\n");
+}
+
+void tree_print_postorder_helper(struct node *x){
+	if(x != nill){
+	    tree_print_postorder_helper(x->left);
+		tree_print_postorder_helper(x->right);
+		printf("%d\t", x->key);
+	}
+}
+void tree_print_postorder()
+{
+    tree_print_postorder_helper(root);
+    printf("\n");
+}
+
+struct node *search(int val){
+	struct node *x = root;
+	while(x != nill && x->key != val){
+		if(val < x->key){
+			x = x->left;
+		}
+		else{
+			x = x->right;
+		}
+	}
+
+	return x;
+}
+
+struct node *minimum_helper(struct node *x){
+    if(x==nill)
+    {
+        return x;
+    }
+	while(x->left != nill){
+		x = x->left;
+	}
+	return x;
+}
+
+struct node *minimum()
+{
+    return minimum_helper(root);
+}
+
+struct node *maximum_helper(struct node *x){
+    if(x==nill)
+    {
+        return x;
+    }
+	while(x->right != nill){
+		x = x->right;
+	}
+	return x;
+}
+
+struct node *maximum()
+{
+    return maximum_helper(root);
+}
+
+void print_path(int val)
+{
+    struct node *x = search(val);
+    if(x==nill)
+    {
+        return;
+    }
+    if(x==root)
+    {
+        printf("%d\t",x->key);
+        return;
+    }
+    print_path(x->parent);
+    printf("%d\t",x->key);
+    
+}
+int main() {
+	// your code goes here
+	return 0;
+}
