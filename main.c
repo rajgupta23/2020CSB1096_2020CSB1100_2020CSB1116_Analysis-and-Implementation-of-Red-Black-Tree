@@ -21,5 +21,7 @@ int main() {
 	printf("min = %d \n",minimum(t));
 	search(t,5)?printf("found\n"):printf("Not found\n");
 	printPath(t,6);
+	delete(t,5);
+	inorder(t,t->root);
 	return 0;
 }
