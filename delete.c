@@ -104,8 +104,8 @@ void delete(Tree *t, int k)
 {
     node* z = t->root;
 	while ((z->data != k)&&(z != t->NIL)) {
-		if (z->data < k)z = z->left;
-		else z = z->right;
+		if (z->data < k)z = z->right;
+		else z = z->left;
 	}
     node *x;
     node *y = z;
