@@ -156,7 +156,7 @@ void insert(Tree *t, node *z) { // CLRS RB-INSERT(T,z)
 void inorder(Tree *t, node *root) {
 	if (root != t->NIL) { // tree has atleast one node
 		inorder(t, root->left);
-		printf("%d\n", root->data);
+		printf("%d ", root->data);
 		inorder(t, root->right);
 	}
 }
@@ -165,13 +165,13 @@ void postorder(Tree * t , node * root) {
 	if (root != t->NIL) { // tree has atleast one node
 		postorder(t, root->left);
 		postorder(t, root->right);
-		printf("%d\n", root->data);
+		printf("%d ", root->data);
 	}
 }
 
 void preorder(Tree * t , node * root) {
 	if (root != t->NIL) { // tree has atleast one node
-		printf("%d\n", root->data);
+		printf("%d ", root->data);
 		preorder(t, root->left);
 		preorder(t, root->right);
 	}
