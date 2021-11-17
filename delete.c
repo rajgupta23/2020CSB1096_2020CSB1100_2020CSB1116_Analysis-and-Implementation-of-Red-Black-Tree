@@ -31,6 +31,12 @@ void transplant(Tree *t, node *a, node *b)
         a->parent->right = b;
     a->parent = a->parent;
 }
+node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
+	node * temp = z;
+	if (temp == t->NIL)return NULL; // tree is empty
+	while (temp->left != t->NIL)temp = temp->left;
+	return temp;
+}
 void deleteFixup(Tree *t, node *x)
 {
     node *w;
