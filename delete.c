@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define Red 0
+#define Black 1
 
 struct node{
 	int val;
@@ -38,30 +40,30 @@ void transplant(struct node *a, struct node *b)
 void deleteFixup(struct node *x)
 {
     struct node *w;
-    while((x != ROOT)&&(x->color == 0))
+    while((x != ROOT)&&(x->color == Black))
     {
         if(x == x->parent->left){
             w = x->parent->right;
-            if(w->color == 1){
-                w->color = 0;
-                x->parent->color = 1;
+            if(w->color == Red){
+                w->color = Black;
+                x->parent->color = Red;
                 leftRotate(x->parent);
                 w = x->parent->right;
             }
-            if((w->left->color == 0)&&(w->right->color == 0)){
-                w->color = 1;
+            if((w->left->color == Black)&&(w->right->color == Black)){
+                w->color = Red;
                 x = x->parent;  
             }
-            else if(w->right->color == 0){
-                w->left->color = 0;
-                w->color = 1;
+            else if(w->right->color == Black){
+                w->left->color = Black;
+                w->color = Red;
                 rightRotate(w);
                 w = x->parent->right;
             }
             else{
                 w->color = w->parent->color;
-                w->parent->color = 0;
-                w->right->color = 0;
+                w->parent->color = Black;
+                w->right->color = Black;
                 leftRotate(x->parent);
                 x = ROOT;
             }
@@ -70,40 +72,40 @@ void deleteFixup(struct node *x)
         
         else{// x == x->parent->right
             w = x->parent->left;
-            if(w->color == 1){
-                w->color = 0;
-                x->parent->color = 1;
+            if(w->color == Red){
+                w->color = Black;
+                x->parent->color = Red;
                 rightRotate(x->parent);
                 w = x->parent->left;
             }
-            else if((w->left->color == 0)&&(w->right->color == 0)){
-                w->color = 1;
+            if((w->left->color == Black)&&(w->right->color == Black)){
+                w->color = Red;
                 x = x->parent;  
             }
-            else if(w->left->color == 0){
-                w->right->color = 0;
-                w->color = 1;
+            else if(w->left->color == Black){
+                w->right->color = Black;
+                w->color = Red;
                 leftRotate(w);
                 w = x->parent->left;
             }
             else{
                 w->color = w->parent->color;
-                w->parent->color = 0;
-                w->left->color = 0;
+                w->parent->color = Black;
+                w->left->color = Black;
                 rightRotate(x->parent);
                 x = ROOT;
             }
             
         }
         
-        x->color = 0;   
+        x->color = Black;   
     }
 }
 void delete(struct node *z)
 {
     struct node *x;
     struct node *y = z;
-    bool yOriginalColor = y->color;//0 for B , 1 for R
+    bool yOriginalColor = y->color;
 
     if(z->left == NILL){
         x = z->right;
@@ -129,7 +131,7 @@ void delete(struct node *z)
         y->left->parent = y;
         y->color = z->color;
     } 
-    if(yOriginalColor == 0)
+    if(yOriginalColor == Black)
         deleteFixup(x);
 }
 
