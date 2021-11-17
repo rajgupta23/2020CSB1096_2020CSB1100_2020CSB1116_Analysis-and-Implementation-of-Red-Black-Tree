@@ -204,12 +204,12 @@ int maximum(Tree* t) { // to find maximum value in tree
 
 // }
 
-int blackHieght(Tree *t, node *root) {  // still has bug
-	node* temp = root;
+int blackHieght(Tree *t) {
+	node* temp = t->root;
 	int res = 0;
 	while (temp != t->NIL) {
 		temp = temp->left;
-		if (temp->color == 0)
+		if (temp->color == 1)
 			res++;
 	}
 	return res;
