@@ -223,3 +223,128 @@ int blackHieght(Tree *t) {
 	}
 	return res;
 }
+
+void transplant(Tree *t, node *a, node *b)
+{
+	if (a->parent == t->NIL)
+		t->root = b;
+	else if (a == a->parent->left)
+		a->parent->left = b;
+	else
+		a->parent->right = b;
+	b->parent = a->parent;
+}
+node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
+	node * temp = z;
+	if (temp == t->NIL)return NULL; // tree is empty
+	while (temp->left != t->NIL)temp = temp->left;
+	return temp;
+}
+void deleteFixup(Tree *t, node *x)
+{
+	node *w;
+	while ((x != t->root) && (x->color == Black))
+	{
+		if (x == x->parent->left) {
+			w = x->parent->right;
+			if (w->color == Red) {
+				w->color = Black;
+				x->parent->color = Red;
+				left_rotate(t, x->parent);
+				w = x->parent->right;
+			}
+			if ((w->left->color == Black) && (w->right->color == Black)) {
+				w->color = Red;
+				x = x->parent;
+			}
+			else if (w->right->color == Black) {
+				w->left->color = Black;
+				w->color = Red;
+				right_rotate(t, w);
+				w = x->parent->right;
+			}
+			else {
+				w->color = w->parent->color;
+				w->parent->color = Black;
+				w->right->color = Black;
+				left_rotate(t, x->parent);
+				x = t->root;
+			}
+
+		}
+
+		else { // x == x->parent->right
+			w = x->parent->left;
+			if (w->color == Red) {
+				w->color = Black;
+				x->parent->color = Red;
+				right_rotate(t, x->parent);
+				w = x->parent->left;
+			}
+			if ((w->left->color == Black) && (w->right->color == Black)) {
+				w->color = Red;
+				x = x->parent;
+			}
+			else if (w->left->color == Black) {
+				w->right->color = Black;
+				w->color = Red;
+				left_rotate(t, w);
+				w = x->parent->left;
+			}
+			else {
+				w->color = w->parent->color;
+				w->parent->color = Black;
+				w->left->color = Black;
+				right_rotate(t, x->parent);
+				x = t->root;
+			}
+
+		}
+	}
+	x->color = Black;
+}
+void delete(Tree *t, int k)
+{
+	node* z = t->root;
+	while ((z->data != k) && (z != t->NIL)) {
+		if (z->data < k)z = z->right;
+		else z = z->left;
+	}
+	node *x;
+	node *y = z;
+	bool yOriginalColor = y->color;
+
+	if ((z->left == t->NIL) && (z->right != t->NIL)) {
+		x = z->right;
+		transplant(t, z, z->right);
+	}
+	else if ((z->right == t->NIL) && (z->left != t->NIL)) {
+		x = z->left;
+		transplant(t, z, z->left);
+	}
+	else if ((z->right == t->NIL) && (z->left == t->NIL)) {
+		if (z == z->parent->left)
+			z->parent->left = t->NIL;
+		if (z == z->parent->right)
+			z->parent->right = t->NIL;
+		x = z;
+	}
+	else {
+		y = treeMin(t, z->right);
+		yOriginalColor = y->color;
+		x = y->right;
+		if (y->parent == z)
+			x->parent = y;
+		else {
+			transplant(t, y, y->right);
+			y->right = z->right;
+			y->right->parent = y;
+		}
+		transplant(t, z, y);
+		y->left = z->left;
+		y->left->parent = y;
+		y->color = z->color;
+	}
+	if (yOriginalColor == Black)
+		deleteFixup(t, x);
+}
