@@ -240,9 +240,10 @@ node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
 	while (temp->left != t->NIL)temp = temp->left;
 	return temp;
 }
-void deleteFixup(Tree *t, node *x)
+void deleteFixup(Tree *t, node *x, bool n)
 {
 	node *w;
+    node *temp = x;
 	while ((x != t->root) && (x->color == Black))
 	{
 		if (x == x->parent->left) {
@@ -302,6 +303,13 @@ void deleteFixup(Tree *t, node *x)
 		}
 	}
 	x->color = Black;
+    if(n = 1){
+        if (temp == temp->parent->left)
+			temp->parent->left = t->NIL;
+		if (temp == temp->parent->right)
+			temp->parent->right = t->NIL;
+    }
+
 }
 void delete(Tree *t, int k)
 {
@@ -312,6 +320,7 @@ void delete(Tree *t, int k)
 	}
 	node *x;
 	node *y = z;
+    bool n = 0;
 	bool yOriginalColor = y->color;
 
 	if ((z->left == t->NIL) && (z->right != t->NIL)) {
@@ -323,11 +332,12 @@ void delete(Tree *t, int k)
 		transplant(t, z, z->left);
 	}
 	else if ((z->right == t->NIL) && (z->left == t->NIL)) {
-		if (z == z->parent->left)
+		/*if (z == z->parent->left)
 			z->parent->left = t->NIL;
 		if (z == z->parent->right)
-			z->parent->right = t->NIL;
+			z->parent->right = t->NIL;*/
 		x = z;
+        k = 1;
 	}
 	else {
 		y = treeMin(t, z->right);
@@ -346,5 +356,5 @@ void delete(Tree *t, int k)
 		y->color = z->color;
 	}
 	if (yOriginalColor == Black)
-		deleteFixup(t, x);
+		deleteFixup(t, x, n);
 }
