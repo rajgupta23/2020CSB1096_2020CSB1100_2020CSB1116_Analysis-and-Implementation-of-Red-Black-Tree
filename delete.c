@@ -97,9 +97,8 @@ void deleteFixup(struct node *x)
             }
             
         }
-        
-        x->color = Black;   
     }
+	x->color = Black;   
 }
 void delete(struct node *z)
 {
