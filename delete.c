@@ -29,7 +29,7 @@ void transplant(Tree *t, node *a, node *b)
         a->parent->left = b;
     else
         a->parent->right = b;
-    a->parent = a->parent;
+    b->parent = a->parent;
 }
 node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
 	node * temp = z;
