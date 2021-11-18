@@ -20,7 +20,6 @@ typedef struct Tree {
 
 void left_rotate(Tree *t, node *x) {}
 void right_rotate(Tree *t, node *x) {}
-
 void transplant(Tree *t, node *a, node *b)
 {
 	if (a->parent == t->NIL)
@@ -38,8 +37,6 @@ node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
 }
 void deleteFixup(Tree *t, node *x)
 {
-	// node *w;
-	// node *temp = x;
 	while ((x != t->root) && (x->color == Black))
 	{
 		if (x == x->parent->left) {
@@ -69,7 +66,7 @@ void deleteFixup(Tree *t, node *x)
 			}
 		}
 
-		else { // x == x->parent->right
+		else {
 			node * w = x->parent->left;
 			if (w->color == Red) {
 				w->color = Black;
@@ -94,12 +91,9 @@ void deleteFixup(Tree *t, node *x)
 				right_rotate(t, x->parent);
 				x = t->root;
 			}
-
-
 		}
 	}
 	x->color = Black;
-
 }
 void delete(Tree *t, int k)
 {
@@ -109,9 +103,12 @@ void delete(Tree *t, int k)
 		if (z->data < k)z = z->right;
 		else z = z->left;
 	}
+	if (z == t->NIL) {
+		printf("Element is not present\n");
+		return;
+	}
 	node *x;
 	node *y = z;
-	// bool n = 0;
 	bool yOriginalColor = y->color;
 
 	if (z->left == t->NIL) {
@@ -122,14 +119,6 @@ void delete(Tree *t, int k)
 		x = z->left;
 		transplant(t, z, z->left);
 	}
-	// else if ((z->right == t->NIL) && (z->left == t->NIL)) {  /// we dont need it
-	// 	if (z == z->parent->left)
-	// 		z->parent->left = t->NIL;
-	// 	if (z == z->parent->right)
-	// 		z->parent->right = t->NIL;
-	// 	x = z;
-	// 	k = 1;
-	// }
 	else {
 		y = treeMin(t, z->right);
 		bool y_orignal_color = y->color;
