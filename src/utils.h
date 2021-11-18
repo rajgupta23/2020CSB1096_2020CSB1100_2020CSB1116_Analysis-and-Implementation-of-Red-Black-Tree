@@ -200,7 +200,7 @@ int maximum(Tree* t) { // to find maximum value in tree
 	return temp->data;
 }
 
-void printPath(Tree* t, int key) { // to be completed
+void printPath(Tree* t, int key) { 
 
 	if (search(t, key) == 0)printf("Element is not present\n");
 
@@ -234,7 +234,7 @@ void transplant(Tree *t, node *a, node *b)
 		a->parent->right = b;
 	b->parent = a->parent;
 }
-node* treeMin(Tree* t, node *z) {  // to find minimum value in tree
+node* treeMin(Tree* t, node *z) {  // to find minimum value node in tree
 	node * temp = z;
 	while (temp->left != t->NIL)temp = temp->left;
 	return temp;
