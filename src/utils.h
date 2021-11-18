@@ -18,7 +18,7 @@ typedef struct Tree {
 	node *NIL;
 } Tree;
 
-node* getNode(int data) {
+node* getNode(int data) { // function return a node pointer with color red
 	node* n = (node*)malloc(sizeof(node));
 	n->left = NULL;
 	n->right = NULL;
@@ -28,7 +28,7 @@ node* getNode(int data) {
 	return n;
 }
 
-Tree* getRBTree() {
+Tree* getRBTree() {  // returns an empty tree
 	Tree *t = (Tree*)malloc(sizeof(Tree));
 	node *T_nil = (node*) malloc(sizeof(node));
 	T_nil->color = Black;
