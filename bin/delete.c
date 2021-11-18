@@ -17,9 +17,45 @@ typedef struct Tree {
 	node *root;
 	node *NIL;
 } Tree;
+void left_rotate(Tree *t, node *x) {  // LEFT-ROTATE(T,x)
+	node *y = x->right;
+	x->right = y->left;
+	if (y->left != t->NIL) {
+		y->left->parent = x;
+	}
+	y->parent = x->parent;
+	if (x->parent == t->NIL) { //x --> root
+		t->root = y;
+	}
+	else if (x == x->parent->left) { //x --> left child
+		x->parent->left = y;
+	}
+	else { //x --> right child
+		x->parent->right = y;
+	}
+	y->left = x;
+	x->parent = y;
+}
 
-void left_rotate(Tree *t, node *x) {}
-void right_rotate(Tree *t, node *x) {}
+void right_rotate(Tree *t, node *x) { // CLRS RIGHT-ROTATE(T,x)
+	node *y = x->left;
+	x->left = y->right;
+	if (y->right != t->NIL) {
+		y->right->parent = x;
+	}
+	y->parent = x->parent;
+	if (x->parent == t->NIL) { //x --> root
+		t->root = y;
+	}
+	else if (x == x->parent->right) { //x --> left child
+		x->parent->right = y;
+	}
+	else { //x --> right child
+		x->parent->left = y;
+	}
+	y->right = x;
+	x->parent = y;
+}
 void transplant(Tree *t, node *a, node *b)
 {
 	if (a->parent == t->NIL)
