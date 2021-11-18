@@ -61,13 +61,13 @@ void deleteFixup(Tree *t, node *x, bool n)
 				right_rotate(t, w);
 				w = x->parent->right;
 			}
-			else {
-				w->color = w->parent->color;
-				w->parent->color = Black;
+		 
+				w->color = x->parent->color;
+				x->parent->color = Black;
 				w->right->color = Black;
 				left_rotate(t, x->parent);
 				x = t->root;
-			}
+			
 
 		}
 
@@ -89,13 +89,13 @@ void deleteFixup(Tree *t, node *x, bool n)
 				left_rotate(t, w);
 				w = x->parent->left;
 			}
-			else {
-				w->color = w->parent->color;
-				w->parent->color = Black;
+		 
+				w->color = x->parent->color;
+				x->parent->color = Black;
 				w->left->color = Black;
 				right_rotate(t, x->parent);
 				x = t->root;
-			}
+			
 
 		}
 	}
@@ -155,7 +155,6 @@ void delete(Tree *t, int k)
 	if (yOriginalColor == Black)
 		deleteFixup(t, x, n);
 }
-
 
 int main()
 { 
