@@ -307,6 +307,10 @@ void delete(Tree *t, int k)
 		if (z->data < k)z = z->right;
 		else z = z->left;
 	}
+	if (z == t->NIL) {
+		printf("Element is not present\n");
+		return;
+	}
 	node *x;
 	node *y = z;
 	bool yOriginalColor = y->color;
