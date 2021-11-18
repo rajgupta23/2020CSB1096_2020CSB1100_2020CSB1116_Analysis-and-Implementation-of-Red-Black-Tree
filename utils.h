@@ -183,7 +183,7 @@ int search(Tree* t , int key) { // to search key in the tree
 		if (temp->data > key)temp = temp->left;
 		else temp = temp->right;
 	}
-	(temp == t->NIL) ? 0 : 1;
+	return !(temp == t->NIL);
 }
 
 int minimum(Tree* t) {  // to find minimum value in tree
