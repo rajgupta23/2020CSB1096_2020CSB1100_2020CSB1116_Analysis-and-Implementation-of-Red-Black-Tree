@@ -10,7 +10,7 @@ typedef struct node { // treeNode structure
 	bool color; // using bool we can save 31 bits of int.
 	struct node *right; // pointer to right child
 	struct node *left; // pointer to left child
-	struct node *parent; // pointer to parent child
+	struct node *parent; // pointer to parent
 } node;
 
 typedef struct Tree {
@@ -200,7 +200,7 @@ int maximum(Tree* t) { // to find maximum value in tree
 	return temp->data;
 }
 
-void printPath(Tree* t, int key) { 
+void printPath(Tree* t, int key) { // prints path for search(t,key)
 
 	if (search(t, key) == 0)printf("Element is not present\n");
 
@@ -213,7 +213,7 @@ void printPath(Tree* t, int key) {
 	printf("%d\n", key);
 }
 
-int blackHieght(Tree *t) {
+int blackHieght(Tree *t) {  // number of black nodes from root to any nil node
 	node* temp = t->root;
 	int res = 0;
 	while (temp != t->NIL) {
@@ -224,7 +224,7 @@ int blackHieght(Tree *t) {
 	return res;
 }
 
-void transplant(Tree *t, node *a, node *b)
+void transplant(Tree *t, node *a, node *b) // CLRS RB-TRANSPLANT(T,u,v)
 {
 	if (a->parent == t->NIL)
 		t->root = b;
@@ -239,7 +239,7 @@ node* treeMin(Tree* t, node *z) {  // to find minimum value node in tree
 	while (temp->left != t->NIL)temp = temp->left;
 	return temp;
 }
-void deleteFixup(Tree *t, node *x)
+void deleteFixup(Tree *t, node *x) // CLRS RB-DELETE-FIXUP.(T, x)
 {
 	while ((x != t->root) && (x->color == Black))
 	{
@@ -299,7 +299,7 @@ void deleteFixup(Tree *t, node *x)
 	}
 	x->color = Black;
 }
-void delete(Tree *t, int k)
+void delete(Tree *t, int k) //clrs RB-delete(t,x)
 {
 	node* z = malloc(sizeof(node));
 	z = t->root;
