@@ -313,7 +313,7 @@ void delete(Tree *t, int k) //clrs RB-delete(t,x)
 	}
 	node *x;
 	node *y = z;
-	bool yOriginalColor = y->color;
+	bool y_orignal_color = y->color;
 
 	if (z->left == t->NIL) {
 		x = z->right;
@@ -325,10 +325,10 @@ void delete(Tree *t, int k) //clrs RB-delete(t,x)
 	}
 	else {
 		y = treeMin(t, z->right);
-		bool y_orignal_color = y->color;
+		y_orignal_color = y->color;
 		x = y->right;
 		if (y->parent == z) {
-			x->parent = z;
+			x->parent = y;
 		}
 		else {
 			transplant(t, y, y->right);
@@ -340,6 +340,6 @@ void delete(Tree *t, int k) //clrs RB-delete(t,x)
 		y->left->parent = y;
 		y->color = z->color;
 	}
-	if (yOriginalColor == Black)
+	if (y_orignal_color == Black)
 		deleteFixup(t, x);
 }
