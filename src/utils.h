@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>  
 #include <stdlib.h>
 #include<stdbool.h>
 
@@ -14,8 +14,8 @@ typedef struct node { // treeNode structure
 } node;
 
 typedef struct Tree {
-	node *root;
-	node *NIL;
+	node *root;             // Pointer to root of the Red Black Tree
+	node *NIL;              // Pointer pointing to the sentinel T.Nil in the Tree 
 } Tree;
 
 node* getNode(int data) { // function return a node pointer with color red
