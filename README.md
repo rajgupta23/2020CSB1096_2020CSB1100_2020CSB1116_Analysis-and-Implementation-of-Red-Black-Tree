@@ -1,6 +1,6 @@
 # 2020CSB1096_2020CSB1100_2020CSB1116_Analysis-and-Implementation-of-Red-Black-Tree
 CS201 Project\
-To run the program you must have an IDE having terminal.\
+To run the program you must have an IDE having terminal.
 
 
 
@@ -21,4 +21,4 @@ The program will ask the user to enter:\
     output: prints postorder traversal\
 7 for preorder traversal\
     output: prints preorder traversal\
-8 to quit the program\
+8 to quit the program
