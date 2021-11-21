@@ -2,7 +2,7 @@
 CS201 Project\
 To run the program you must have an IDE having terminal.
 
-After extracting code file go to src folder then open it in IDE then type main.c followed by ./a.exe
+After extracting code file go to src folder then open it in IDE then type main.c followed by ./a.exe in terminal.
 
 The program will ask the user to enter:\
 1 for insertion\
