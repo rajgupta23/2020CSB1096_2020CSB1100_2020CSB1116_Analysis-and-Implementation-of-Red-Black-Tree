@@ -11,14 +11,14 @@ The program will ask the user to enter:\
 2 for deletion\
     input: element to be deleted\
 3 to search an element\
-    input: element to be searched
-    output: prints if the element is present or not
-4 to find black height of the tree
-    output: dispalys the black height of the tree
-5 for inorder traversal
-    output: prints inorder traversal
-6 for postorder traversal
-    output: prints postorder traversal
-7 for preorder traversal
-    output: prints preorder traversal
-8 to quit
+    input: element to be searched\
+    output: prints if the element is present or not\
+4 to find black height of the tree\
+    output: dispalys the black height of the tree\
+5 for inorder traversal\
+    output: prints inorder traversal\
+6 for postorder traversal\
+    output: prints postorder traversal\
+7 for preorder traversal\
+    output: prints preorder traversal\
+8 to quit the program\
