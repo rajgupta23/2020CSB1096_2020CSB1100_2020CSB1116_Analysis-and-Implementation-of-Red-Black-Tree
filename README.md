@@ -5,9 +5,9 @@ To run the program you must have an IDE having terminal.\
 
 
 
-The program will ask the user to enter:
-1 for insertion
-    input: element to be inserted
+The program will ask the user to enter:\
+1 for insertion\
+    input: element to be inserted\
 2 for deletion
     input: element to be deleted
 3 to search an element
